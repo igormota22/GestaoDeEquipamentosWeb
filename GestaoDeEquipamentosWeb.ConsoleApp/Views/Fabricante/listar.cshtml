@@ -1,20 +1,24 @@
 ﻿@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
 @model List<Fabricante>;
-<h2>Listagem de Fabricantes</h2>
+<h1>Gestão de Equipamentos</h1>
 
+<hr>
+<a href="">Controle de Equipamentos</a>
+<a href="">Controle de Chamados</a>
+<hr>
+<h2>Listagem de Fabricantes</h2>
 <hr>
 <a href="/Fabricante/Cadastrar">Cadastrar novo</a>
 <hr>
-
-<hr>
-
-<table>
+<table border="1" cellpadding="10">
     <thead>
         <tr>
             <td>Id</td>
             <td>Nome</td>
             <td>Email</td>
             <td>Telefone</td>
+            <td>Ação 1</td>
+            <td>Ação 2</td>
         </tr>
     </thead>
     <tbody>
@@ -25,8 +29,15 @@
                 <td>@f.Nome</td>
                 <td>@f.Email</td>
                 <td>@f.Telefone</td>
+                <td> <a href="Fabricante/Editar">Editar</a>
+                </td>
+                <td> <a href="Fabricante/Excluir">Excluir</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+<br>
+<a href="/Home/Index">Voltar</a>
+
 

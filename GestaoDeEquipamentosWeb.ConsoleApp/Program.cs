@@ -9,6 +9,8 @@ builder.Services.AddControllersWithViews();
 //Criaçao
 WebApplication app = builder.Build();
 
+//
+app.UseStaticFiles();
 app.UseRouting();
 app.MapDefaultControllerRoute();
 

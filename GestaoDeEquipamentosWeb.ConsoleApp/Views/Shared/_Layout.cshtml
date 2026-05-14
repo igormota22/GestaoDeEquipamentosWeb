@@ -5,28 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Titulo - Gestao de Equipamentos</title>
-</head>
 
-<body>
-    <nav>
-        <h1>Gestão de Equipamentos</h1>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+    rel="stylesheet">
 
-        <hr>
-        <a href="/Fabricante/listar">Controle de Fabricantes</a>
-        <a href="/Equipamento/listar">Controle de Equipamentos</a> -
-        <a href="/Chamado/listar">Controle de Chamados</a> -
-        <hr>
+    <link rel="stylesheet" href="~/CSS/styles.CSS">
+    </head>
 
-    </nav>
+    <body>
+        <nav>
+            <h3>Gestão de Equipamentos</h3>
 
-    <header>
-        <h2>@ViewBag.Titulo</h2>
-    </header>
+            <div class="Links-navbar">
+                <a href="/Fabricante/listar">Controle de Fabricantes</a>
+                <a href="/Equipamento/listar">Controle de Equipamentos</a> -
+                <a href="/Chamado/listar">Controle de Chamados</a> -
+            </div>
 
-    <main>
-        @RenderBody()
-    </main>
+           
+
+        </nav>
+
+        <header>
+            <h2>@ViewBag.Titulo</h2>
+        </header>
+
+        <main>
+            @RenderBody()
+        </main>
   
-</body>
+    </body>
 
 </html>

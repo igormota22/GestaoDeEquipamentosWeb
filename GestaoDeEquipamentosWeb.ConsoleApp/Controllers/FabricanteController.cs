@@ -17,7 +17,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             repositorioFabricante = new RepositorioFabricanteEmArquivo(contexto);
         }
         // GET: FabricanteController
-        public ActionResult listar()
+        public ActionResult Listar()
         {
             List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
             return View(fabricantes);
@@ -37,7 +37,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             repositorioFabricante.Cadastrar(novoFabricante);
 
 
-            return RedirectToAction(nameof(listar));
+            return RedirectToAction(nameof(Listar));
         }
 
         [HttpGet]
@@ -46,9 +46,9 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
 
             if (fabricante == null)
-                return RedirectToAction(nameof(listar));
+                return RedirectToAction(nameof(Listar));
 
-            return View();
+            return View(fabricante);
         }
 
         [HttpPost]
@@ -58,7 +58,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
 
             repositorioFabricante.Editar(id, fabricanteAtualizado);
 
-            return RedirectToAction(nameof(listar));
+            return RedirectToAction(nameof(Listar));
         }
 
         [HttpGet]
@@ -67,7 +67,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
 
             if (fabricante == null)
-                return RedirectToAction(nameof(listar));
+                return RedirectToAction(nameof(Listar));
 
             return View(fabricante);
         }
@@ -79,11 +79,11 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
 
             if (fabricante == null)
-                return RedirectToAction(nameof(listar));
+                return RedirectToAction(nameof(Listar));
 
             repositorioFabricante.Excluir(fabricante);
 
-            return RedirectToAction(nameof(listar));
+            return RedirectToAction(nameof(Listar));
         }
     }
 }

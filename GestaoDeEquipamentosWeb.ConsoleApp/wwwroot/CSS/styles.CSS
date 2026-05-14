@@ -1,3 +1,7 @@
+:root {
+    font-size: 18px;
+}
+
 html,
 body {
     height: 100%;
@@ -17,9 +21,8 @@ body {
 }
 
 nav {
-    background: #782348;
-    background: radial-gradient(circle, rgba(120, 35, 72, 1) 0%, rgba(148, 187, 233, 1) 100%);
-
+    background: radial-gradient(circle, #a8447a 0%, #022c5a 100%);
+    color: #fff;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,6 +35,61 @@ nav {
 }
 
 .Links-navbar>a {
-    color: black;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 100vmax;
+    padding: 8px 18px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-cadastrar {
+    display: inline-block;
+    background: radial-gradient(circle, #a8447a 0%, #022c5a 100%);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 100vmax;
+    padding: 8px 18px;
+    text-decoration: none;
+    font-weight: 600;
+
+    margin: 10px 0px;
+}
+
+.registros {
+    width: 100%;
+    min-width: 720px;
+}
+
+.registros th,
+.registros td {
+    padding: 16px 18px;
+    color: rgb(55, 44, 59);
+    text-align: right;
+    vertical-align: middle;
+}
+
+.registros th {
+    background: radial-gradient(circle, #a8447a 0%, #022c5a 100%);
+    color: #fff;
+
+    font-size: rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.registros tbody tr {
+    background-color: white;
+}
+
+.registros a {
+    border: 1px solid rgba(152, 62, 209, 0.45);
+    border-radius: 100vmax;
+    background: radial-gradient(circle, #a8447a 0%, #022c5a 100%);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 7px 16px;
     text-decoration: none;
 }

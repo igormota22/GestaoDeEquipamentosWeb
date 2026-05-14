@@ -1,18 +1,14 @@
-﻿﻿@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+﻿﻿@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Exclusão de fabricante";
+
+}
+
+@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
 
 @model Fabricante;
 
-<h1>Gestão de Equipamentos</h1>
 
-<hr>
-<a href="/">Início</a> -
-<a href="/Fabricante/listar">Controle de Fabricantes</a> -
-<a href="/Equipamento/listar">Controle de Equipamentos</a> -
-<a href="/Chamado/Listar">Controle de Chamados</a> -
-<a href="https://www.academiadoprogramador.net" target="_blank">Academia do Programador</a>
-<hr>
-
-<h2>Exclusão de Fabricante</h2>
 
 <form action="/Fabricante/Excluir/@Model.Id" method="post">
     <div>

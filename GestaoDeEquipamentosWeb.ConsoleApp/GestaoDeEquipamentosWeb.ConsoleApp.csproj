@@ -14,6 +14,7 @@
     <Folder Include="Views\" />
     <Folder Include="Views\Fabricante\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
 
 </Project>

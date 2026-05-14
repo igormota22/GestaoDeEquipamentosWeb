@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Titulo - Gestao de Equipamentos</title>
+</head>
+
+<body>
+    <nav>
+        <h1>Gestão de Equipamentos</h1>
+
+        <hr>
+        <a href="/Fabricante/listar">Controle de Fabricantes</a>
+        <a href="/Equipamento/listar">Controle de Equipamentos</a> -
+        <a href="/Chamado/listar">Controle de Chamados</a> -
+        <hr>
+
+    </nav>
+
+    <header>
+        <h2>@ViewBag.Titulo</h2>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+  
+</body>
+
+</html>

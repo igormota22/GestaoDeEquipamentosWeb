@@ -1,12 +1,14 @@
-﻿@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
-@model List<Fabricante>;
-<h1>Gestão de Equipamentos</h1>
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Listagem de fabricante";
 
-<hr>
-<a href="">Controle de Equipamentos</a>
-<a href="">Controle de Chamados</a>
-<hr>
-<h2>Listagem de Fabricantes</h2>
+}
+@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+@model List<Fabricante>;
+
+
+
+
 <hr>
 <a href="/Fabricante/Cadastrar">Cadastrar novo</a>
 <hr>

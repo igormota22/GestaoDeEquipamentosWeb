@@ -39,5 +39,51 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
 
             return RedirectToAction(nameof(listar));
         }
+
+        [HttpGet]
+        public ActionResult Editar(string id)
+        {
+            Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+
+            if (fabricante == null)
+                return RedirectToAction(nameof(listar));
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Editar(string id, string nome, string email, string telefone)
+        {
+            Fabricante fabricanteAtualizado = new Fabricante(nome, email, telefone);
+
+            repositorioFabricante.Editar(id, fabricanteAtualizado);
+
+            return RedirectToAction(nameof(listar));
+        }
+
+        [HttpGet]
+        public ActionResult Excluir(string id)
+        {
+            Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+
+            if (fabricante == null)
+                return RedirectToAction(nameof(listar));
+
+            return View(fabricante);
+        }
+
+        [HttpPost]
+        [ActionName("Excluir")]
+        public ActionResult ExcluirConfirmado(string id)
+        {
+            Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+
+            if (fabricante == null)
+                return RedirectToAction(nameof(listar));
+
+            repositorioFabricante.Excluir(fabricante);
+
+            return RedirectToAction(nameof(listar));
+        }
     }
 }

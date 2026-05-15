@@ -93,3 +93,87 @@ nav {
     padding: 7px 16px;
     text-decoration: none;
 }
+
+.formulario {
+    width: min(100%, 620px);
+    margin: 30px auto;
+    padding: 28px;
+
+    border: 1px solid rgba(152, 62, 209, 0.45);
+    border-radius: 15px;
+
+    background: radial-gradient(circle, #a8447a 0%, #022c5a 100%);
+    box-shadow: 0, 18px, 46px rgba(25, 25, 26, 0.45);
+}
+
+.formulario-campo {
+    margin: 20px;
+}
+
+.formulario-campo label {
+    display: block;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+}
+
+.formulario-campo input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(152, 62, 209, 0.45);
+    border-radius: 10px;
+    padding: 12px 14px;
+    background-color: #fff(255, 255, 255, 0.7);
+    color: rgb(55, 44, 59);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.formulario-campo input:focus {
+    border-color: #fff;
+    outline: 5px solid rgba(185, 88, 245, 0.842);
+}
+
+.formulario-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.formulario-acoes a,
+.formulario-acoes button {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 100vmax;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 9px 24px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.formulario-acoes button {
+    background-color: #a8447a;
+    color: #EEAECA
+}
+
+.formulario-alerta {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    border-left: 4px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-weight: 600;
+}
+
+.titulo-pagina {
+    color: #fff;
+    text-shadow: 0, 2px, 4px rgb(0, 0, 0, 0.3);
+}

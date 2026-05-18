@@ -122,13 +122,16 @@ nav {
 
 }
 
-.formulario-campo input {
+.formulario-campo input,
+.formulario-campo select {
+    height: 48px;
+    line-height: normal;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid rgba(152, 62, 209, 0.45);
     border-radius: 10px;
     padding: 12px 14px;
-    background-color: #fff(255, 255, 255, 0.7);
+    background-color: #fff;
     color: rgb(55, 44, 59);
     font-family: inherit;
     font-size: 1rem;

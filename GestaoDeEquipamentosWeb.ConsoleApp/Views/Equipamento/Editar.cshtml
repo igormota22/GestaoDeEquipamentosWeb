@@ -1,0 +1,48 @@
+@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Edição de equipamento";
+
+    List<ListarFabricantesViewModel> fabricantes = ViewBag.Fabricantes;
+
+}
+
+
+
+@model EditarEquipamentoViewModel;
+
+<form class="formulario" action="/Equipamento/Editar/@Model.Id" method="post">
+    <div class="formulario-campo">
+        <label>Nome</label>
+        <br>
+        <input type="text" name="Nome" value="@Model.Nome">
+    </div>
+
+    <div class="formulario-campo">
+        <label>Preço de Aquisição</label>
+        <br>
+        <input type="number" name="PrecoAquisicao" value="@Model.PrecoAquisicao">
+    </div>
+
+    <div class="formulario-campo">
+        <label>Data De Fabricação</label>
+        <br>
+        <input type="date" name="DataFabricacao" value="@Model.DataFabricacao">
+    </div>
+
+    <div class="formulario-campo">
+        <label>Fabricante</label>
+        <select name="FabricanteId">
+            @foreach (ListarFabricantesViewModel f in fabricantes)
+            {
+                <option value="@f.Id">@f.Nome</option>
+            }
+        </select>
+    </div>
+
+    <div class="formulario-acoes">
+        <a href="/Equipamento/Listar">Voltar</a>
+        <button type="submit">Confirmar</button>
+    </div>
+
+</form>

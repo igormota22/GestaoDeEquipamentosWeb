@@ -10,8 +10,8 @@ body {
 body {
     font-family: "Google Sans", sans-serif;
 
-    background: #EEAECA;
-    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    background: #200b14;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgb(221, 132, 191) 100%);
 
     display: flex;
     flex-direction: column;
@@ -165,7 +165,7 @@ nav {
 
 .formulario-acoes button {
     background-color: #a8447a;
-    color: #EEAECA
+    color: white
 }
 
 .formulario-alerta {

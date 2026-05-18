@@ -109,6 +109,37 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             return RedirectToAction(nameof(Listar));
         }
 
+        [HttpGet]
+        public ActionResult Excluir(string id)
+        {
+            Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(id);
+
+            if (equipamento == null)
+                return RedirectToAction(nameof(Listar));
+
+            ExcluirEquipamentoViewModel excluirvms = new ExcluirEquipamentoViewModel(
+            id,
+            equipamento.Nome,
+            equipamento.PrecoAquisicao,
+            equipamento.DataFabricacao,
+            equipamento.Fabricante.Nome);
+            return View(excluirvms);
+        }
+
+        [HttpPost]
+        [ActionName("Excluir")]
+        public ActionResult ExcluirConfirmado(ExcluirEquipamentoViewModel excluirVm)
+        {
+            Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(excluirVm.Id);
+
+            if (equipamento != null)
+                repositorioEquipamento.Excluir(equipamento);
+
+            return RedirectToAction(nameof(Listar));
+
+
+        }
+
         private List<ListarFabricantesViewModel> CarregarFabricantes()
         {
 

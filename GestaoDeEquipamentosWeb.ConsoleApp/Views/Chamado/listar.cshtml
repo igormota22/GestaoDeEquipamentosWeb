@@ -1,0 +1,46 @@
+@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Listagem de chamado";
+
+}
+
+@model List<ListarChamadosViewModel>;
+
+
+
+
+
+<a class="btn-cadastrar" href="/Chamado/Cadastrar">Cadastrar novo</a>
+
+<table class="registros">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titulo</th>
+            <th>Descrição</th>
+            <th>Equipamento</th>
+            <th>Ação 1</th>
+            <th>Ação 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ListarChamadosViewModel c in Model)
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Titulo</td>
+                <td>@c.Descricao</td>
+                <td>@c.Equipamento</td>
+                <td><a href="/Chamado/Editar/@c.Id">Editar</a>
+                </td>
+                <td><a href="/Chamado/Excluir/@c.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br>
+
+

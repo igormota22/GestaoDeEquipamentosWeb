@@ -1,0 +1,36 @@
+@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Cadastro de Chamado";
+
+    List<ListarEquipamentosViewModel> equipamentos = ViewBag.Equipamentos;
+}
+
+
+<form class="formulario" action="/Chamado/Cadastrar" method="post">
+
+    <div class="formulario-campo">
+        <label>Titulo</label>
+        <input type="text" name="Titulo" required>
+    </div>
+
+    <div class="formulario-campo">
+        <label>Descrição</label>
+        <input type="text" name="Descricao" required>
+    </div>
+
+    <div class="formulario-campo">
+        <label>Equipamento</label>
+        <select name="EquipamentoId">
+            @foreach (ListarEquipamentosViewModel e in equipamentos)
+            {
+                <option value="@e.Id">@e.Nome</option>
+            }
+        </select>
+    </div>
+
+    <div class="formulario-acoes">
+        <a href="/Chamado/Listar">Voltar</a>
+        <button type="submit">Confirmar</button>
+    </div>
+</form>

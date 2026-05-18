@@ -26,7 +26,10 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
+
 }
+
+
 
 .Links-navbar {
     display: flex;
@@ -175,5 +178,5 @@ nav {
 
 .titulo-pagina {
     color: #fff;
-    text-shadow: 0, 2px, 4px rgb(0, 0, 0, 0.3);
+    text-shadow: 0, 6px, 7px rgb(0, 0, 0, 0.3);
 }

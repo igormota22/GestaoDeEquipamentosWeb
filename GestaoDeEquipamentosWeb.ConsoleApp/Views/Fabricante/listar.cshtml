@@ -1,10 +1,12 @@
-﻿@{
+﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+
+@{
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de fabricante";
 
 }
-@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
-@model List<Fabricante>;
+
+@model List<ListarFabricantesViewModel>;
 
 
 
@@ -24,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Fabricante f in Model)
+        @foreach (ListarFabricantesViewModel f in Model)
         {
             <tr>
                 <td>@f.Id</td>

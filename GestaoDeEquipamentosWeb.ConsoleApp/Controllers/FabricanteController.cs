@@ -1,5 +1,6 @@
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado;
 using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado.Arquivos;
+using GestaoDeEquipamentosWeb.ConsoleApp.Models;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,11 +17,29 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
 
             repositorioFabricante = new RepositorioFabricanteEmArquivo(contexto);
         }
+
         // GET: FabricanteController
         public ActionResult Listar()
         {
             List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
-            return View(fabricantes);
+
+            List<ListarFabricantesViewModel> listarvms = new List<ListarFabricantesViewModel>();
+
+            foreach (Fabricante f in fabricantes)
+            {
+                ListarFabricantesViewModel viewModel = new ListarFabricantesViewModel(
+                    f.Id,
+                    f.Nome,
+                    f.Email,
+                    f.Telefone
+                );
+
+                listarvms.Add(viewModel);
+
+            }
+
+
+            return View(listarvms);
         }
 
         [HttpGet]

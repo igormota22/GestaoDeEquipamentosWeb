@@ -4,14 +4,14 @@
 
 }
 
-@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+@using GestaoDeEquipamentosWeb.ConsoleApp.Models
 
-@model Fabricante;
+@model ExcluirFabricanteViewModel;
 
 <form class="formulario" action="/Fabricante/Excluir/@Model.Id" method="post">
 
     <p class="formulario-alerta">Deseja mesmo excluir este fabricante?</p>
-    
+
     <div class="formulario-campo">
         <label>Nome</label>
         <br>

@@ -1,12 +1,13 @@
-﻿﻿@{
+﻿﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+@{
     Layout = "_Layout";
     ViewBag.Titulo = "Edição de fabricante";
 
 }
 
-@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
 
-@model Fabricante;
+
+@model EditarFabricanteViewModel;
 
 <form class="formulario" action="/Fabricante/Editar/@Model.Id" method="post">
     <div class="formulario-campo">
@@ -30,5 +31,5 @@
         <a href="/Fabricante/Listar">Voltar</a>
         <button type="submit">Confirmar</button>
     </div>
-   
+
 </form>

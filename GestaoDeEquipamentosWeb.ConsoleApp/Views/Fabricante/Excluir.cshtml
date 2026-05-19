@@ -8,30 +8,27 @@
 
 @model ExcluirFabricanteViewModel;
 
-<form class="formulario" action="/Fabricante/Excluir/@Model.Id" method="post">
+<form class="formulario" asp-action="Excluir" asp-route-id="Model.Id" method="post">
 
     <p class="formulario-alerta">Deseja mesmo excluir este fabricante?</p>
 
     <div class="formulario-campo">
-        <label>Nome</label>
-        <br>
-        <input type="text" name="Nome" value="@Model.Nome" disabled>
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" type="text" value="@Model.Nome" disabled>
     </div>
 
     <div class="formulario-campo">
-        <label>Email</label>
-        <br>
-        <input type="email" name="Email" value="@Model.Email" disabled>
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" type="email" value="@Model.Email" disabled>
     </div>
 
     <div class="formulario-campo">
-        <label>Telefone</label>
-        <br>
-        <input type="text" name="Telefone" value="@Model.Telefone" disabled>
+        <label asp-for="Telefone">Telefone</label>
+        <input asp-for="Telefone" type="text" value="@Model.Telefone" disabled>
     </div>
 
     <div class="formulario-acoes">
-        <a href="/Fabricante/Listar">Voltar</a>
+        <a asp-action="Listar">Voltar</a>
         <button type="submit">Confirmar</button>
     </div>
 

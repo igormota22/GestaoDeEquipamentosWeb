@@ -45,7 +45,8 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
         [HttpGet]
         public ActionResult Cadastrar()
         {
-            return View();
+            CadastrarFabricanteViewModel cadastrarVm = new CadastrarFabricanteViewModel(string.Empty, string.Empty, string.Empty);
+            return View(cadastrarVm);
         }
 
         [HttpPost]
@@ -53,8 +54,11 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
         {
             Fabricante novoFabricante = new Fabricante(cadastrarVm.Nome, cadastrarVm.Email, cadastrarVm.Telefone);
 
+            if (!ModelState.IsValid)
+            {
+                return View(cadastrarVm);
+            }
             repositorioFabricante.Cadastrar(novoFabricante);
-
 
             return RedirectToAction(nameof(Listar));
         }
@@ -77,6 +81,10 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
         {
             Fabricante fabricanteAtualizado = new Fabricante(editarVm.Nome, editarVm.Email, editarVm.Telefone);
 
+            if (!ModelState.IsValid)
+            {
+                return View(editarVm);
+            }
             repositorioFabricante.Editar(editarVm.Id, fabricanteAtualizado);
 
             return RedirectToAction(nameof(Listar));

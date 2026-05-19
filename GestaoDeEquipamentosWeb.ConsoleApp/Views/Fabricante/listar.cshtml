@@ -8,11 +8,7 @@
 
 @model List<ListarFabricantesViewModel>;
 
-
-
-
-
-<a class="btn-cadastrar" href="/Fabricante/Cadastrar">Cadastrar novo</a>
+<a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar novo</a>
 
 <table class="registros">
     <thead>
@@ -33,9 +29,8 @@
                 <td>@f.Nome</td>
                 <td>@f.Email</td>
                 <td>@f.Telefone</td>
-                <td><a href="/Fabricante/Editar/@f.Id">Editar</a>
-                </td>
-                <td><a href="/Fabricante/Excluir/@f.Id">Excluir</a>
+                <td><a asp-action="Editar" asp-route-id="@f.Id">Editar</a></td>
+                <td><a asp-action="Excluir" asp-route-id="@f.Id">Excluir</a>
                 </td>
             </tr>
         }

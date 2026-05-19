@@ -65,6 +65,71 @@ public class ChamadoController : Controller
 
     }
 
+    [HttpGet]
+    public ActionResult Editar(string id)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(id);
+
+        if (chamado == null)
+            return RedirectToAction(nameof(Listar));
+
+        EditarChamadoViewModel editarVm = new EditarChamadoViewModel(
+         id,
+         chamado.Titulo,
+         chamado.Descricao,
+         chamado.Equipamento.Id
+        );
+
+        ViewBag.Equipamentos = CarregarEquipamentos();
+
+        return View(editarVm);
+    }
+
+    [HttpPost]
+    public ActionResult Editar(EditarChamadoViewModel editarVm)
+    {
+        Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(editarVm.EquipamentoId);
+
+        if (equipamento == null)
+            return RedirectToAction(nameof(Listar));
+
+        Chamado chamadoAtualizado = new Chamado(editarVm.Titulo, equipamento, editarVm.Descricao);
+
+        repositorioChamado.Editar(editarVm.Id, chamadoAtualizado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    [HttpGet]
+    public ActionResult Excluir(string id)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(id);
+
+        if (chamado == null)
+            return RedirectToAction(nameof(Listar));
+
+        ExcluirChamadoViewModel excluirvms = new ExcluirChamadoViewModel(
+        id,
+        chamado.Titulo,
+        chamado.Descricao,
+        chamado.Equipamento.Nome);
+        return View(excluirvms);
+    }
+
+    [HttpPost]
+    [ActionName("Excluir")]
+    public ActionResult ExcluirConfirmado(ExcluirChamadoViewModel excluirVm)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(excluirVm.Id);
+
+        if (chamado != null)
+            repositorioChamado.Excluir(chamado);
+
+        return RedirectToAction(nameof(Listar));
+
+
+    }
+
     private List<ListarEquipamentosViewModel> CarregarEquipamentos()
     {
         List<Equipamento> equipamentos = repositorioEquipamento.SelecionarTodos();

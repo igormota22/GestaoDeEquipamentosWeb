@@ -1,0 +1,39 @@
+@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Exclusão de Chamado";
+
+
+}
+
+
+
+@model ExcluirChamadoViewModel;
+
+<form class="formulario" action="/Chamado/Excluir/@Model.Id" method="post">
+
+    <p class="formulario-alerta">Deseja mesmo excluir este chamado?</p>
+
+    <div class="formulario-campo">
+        <label>Titulo</label>
+        <br>
+        <input type="text" name="Titulo" value="@Model.Titulo" disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label>Descrição</label>
+        <br>
+        <input type="text" name="Descricao" value="@Model.Descricao" disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label>Equipamento</label>
+        <input type="text" name="Equipamento" value="@Model.Equipamento" disabled>
+    </div>
+
+    <div class="formulario-acoes">
+        <a href="/Chamado/Listar">Voltar</a>
+        <button type="submit">Confirmar</button>
+    </div>
+
+</form>

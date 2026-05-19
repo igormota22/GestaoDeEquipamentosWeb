@@ -4,13 +4,13 @@
 
 html,
 body {
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
     font-family: "Google Sans", sans-serif;
 
-    background: #200b14;
+    background: #a1446d;
     background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgb(221, 132, 191) 100%);
 
     display: flex;
@@ -123,7 +123,8 @@ nav {
 }
 
 .formulario-campo input,
-.formulario-campo select {
+.formulario-campo select,
+.formulario-campo textarea {
     height: 48px;
     line-height: normal;
     width: 100%;
@@ -137,7 +138,9 @@ nav {
     font-size: 1rem;
 }
 
-.formulario-campo input:focus {
+.formulario-campo input:focus,
+.formulario-campo select:focus,
+.formulario-campo textarea:focus {
     border-color: #fff;
     outline: 5px solid rgba(185, 88, 245, 0.842);
 }
@@ -182,4 +185,18 @@ nav {
 .titulo-pagina {
     color: #fff;
     text-shadow: 0, 6px, 7px rgb(0, 0, 0, 0.3);
+}
+
+.formulario-validacao-sumario {
+    margin-bottom: 18px;
+    color: rgb(160, 44, 74);
+    font-weight: 600;
+}
+
+.formulario-validacao-campo {
+    display: block;
+    margin-top: 7px;
+    color: rgb(160, 44, 74);
+    font-size: 0.9rem;
+    font-weight: 600;
 }

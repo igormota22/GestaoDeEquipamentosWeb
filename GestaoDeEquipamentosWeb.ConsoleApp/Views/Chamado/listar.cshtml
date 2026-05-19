@@ -1,5 +1,3 @@
-@using GestaoDeEquipamentosWeb.ConsoleApp.Models
-
 @{
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de chamado";
@@ -9,17 +7,16 @@
 @model List<ListarChamadosViewModel>;
 
 
-
-
-
-<a class="btn-cadastrar" href="/Chamado/Cadastrar">Cadastrar novo</a>
+<a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar novo</a>
 
 <table class="registros">
     <thead>
         <tr>
             <th>Id</th>
             <th>Titulo</th>
-            <th>Descrição</th>
+            <th>Data De Abertura</th>
+            <th>Status</th>
+            <th>Tempo</th>
             <th>Equipamento</th>
             <th>Ação 1</th>
             <th>Ação 2</th>
@@ -31,12 +28,12 @@
             <tr>
                 <td>@c.Id</td>
                 <td>@c.Titulo</td>
-                <td>@c.Descricao</td>
+                <td>@c.DataAbertura.ToString(format: "dd/MM/yyyy")</td>
+                <td>@(c.EstaConcluido ? "Concluido" : "Aberto")</td>
+                <td>@c.TempoDecorrido dias(s) </td>
                 <td>@c.Equipamento</td>
-                <td><a href="/Chamado/Editar/@c.Id">Editar</a>
-                </td>
-                <td><a href="/Chamado/Excluir/@c.Id">Excluir</a>
-                </td>
+                <td><a asp-action="Editar" asp-route-id="@c.Id">Editar</a></td>
+                <td><a asp-action="Excluir" asp-route-id="@c.Id">Excluir</a></td>
             </tr>
         }
     </tbody>

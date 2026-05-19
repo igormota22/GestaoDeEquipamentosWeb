@@ -4,6 +4,7 @@ using GestaoDeEquipamentosWeb.ConsoleApp.Models;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloEquipamento;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers;
 
@@ -32,7 +33,9 @@ public class ChamadoController : Controller
             ListarChamadosViewModel viewModel = new ListarChamadosViewModel(
                 c.Id,
                 c.Titulo,
-                c.Descricao,
+                c.DataAbertura,
+                c.EstaConcluido,
+                c.TempoDecorrido,
                 c.Equipamento.Nome
             );
 
@@ -47,7 +50,8 @@ public class ChamadoController : Controller
     public ActionResult Cadastrar()
     {
         ViewBag.Equipamentos = CarregarEquipamentos();
-        return View();
+        CadastrarChamadoViewModel cadastrarVm = new CadastrarChamadoViewModel(string.Empty, null, string.Empty);
+        return View(cadastrarVm);
     }
 
     [HttpPost]
@@ -56,7 +60,16 @@ public class ChamadoController : Controller
         Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(cadastrarVm.EquipamentoId);
 
         if (equipamento == null)
-            return RedirectToAction(nameof(Listar));
+            ModelState.AddModelError(
+                nameof(cadastrarVm.EquipamentoId),
+                "Selecione um id valido"
+            );
+
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Equipamentos = CarregarEquipamentos();
+            return View(cadastrarVm);
+        }
 
         Chamado novoChamado = new Chamado(cadastrarVm.Titulo, equipamento, cadastrarVm.Descricao);
         repositorioChamado.Cadastrar(novoChamado);
@@ -91,10 +104,18 @@ public class ChamadoController : Controller
         Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(editarVm.EquipamentoId);
 
         if (equipamento == null)
-            return RedirectToAction(nameof(Listar));
+            ModelState.AddModelError(
+                nameof(editarVm.EquipamentoId),
+                "Selecione um id valido"
+            );
+
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Equipamentos = CarregarEquipamentos();
+            return View(editarVm);
+        }
 
         Chamado chamadoAtualizado = new Chamado(editarVm.Titulo, equipamento, editarVm.Descricao);
-
         repositorioChamado.Editar(editarVm.Id, chamadoAtualizado);
 
         return RedirectToAction(nameof(Listar));
@@ -130,20 +151,17 @@ public class ChamadoController : Controller
 
     }
 
-    private List<ListarEquipamentosViewModel> CarregarEquipamentos()
+    private List<SelectListItem> CarregarEquipamentos()
     {
         List<Equipamento> equipamentos = repositorioEquipamento.SelecionarTodos();
 
-        List<ListarEquipamentosViewModel> listarvms = new List<ListarEquipamentosViewModel>();
+        List<SelectListItem> listarvms = new List<SelectListItem>();
 
         foreach (Equipamento e in equipamentos)
         {
-            ListarEquipamentosViewModel viewModel = new ListarEquipamentosViewModel(
-                e.Id,
+            SelectListItem viewModel = new SelectListItem(
                 e.Nome,
-                e.PrecoAquisicao,
-                e.DataFabricacao,
-                e.Fabricante.Nome
+                e.Id
             );
 
             listarvms.Add(viewModel);

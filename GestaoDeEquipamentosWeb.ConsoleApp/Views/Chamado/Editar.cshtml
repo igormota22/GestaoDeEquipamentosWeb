@@ -1,9 +1,8 @@
-@using GestaoDeEquipamentosWeb.ConsoleApp.Models
 @{
     Layout = "_Layout";
     ViewBag.Titulo = "Edição de Chamado";
 
-    List<ListarEquipamentosViewModel> equipamentos = ViewBag.Equipamentos;
+    List<SelectListItem> equipamentos = ViewBag.Equipamentos;
 
 }
 
@@ -11,31 +10,33 @@
 
 @model EditarChamadoViewModel;
 
-<form class="formulario" action="/Chamado/Editar/@Model.Id" method="post">
+<form class="formulario" asp-action="Editar" asp-route-id="@Model.Id" method="post">
     <div class="formulario-campo">
-        <label>Titulo</label>
+        <label asp-for="Titulo">Titulo</label>
         <br>
-        <input type="text" name="Titulo" value="@Model.Titulo">
+        <input asp-for="Titulo" type="text" value="@Model.Titulo">
+        <span asp-validation-for="Titulo"></span>
     </div>
 
     <div class="formulario-campo">
-        <label>Descrição</label>
+        <label asp-for="Descricao">Descrição</label>
         <br>
-        <input type="text" name="Descricao" value="@Model.Descricao">
+        <textarea asp-for="Descricao" type="text" value="@Model.Descricao"></textarea>
+        <span asp-validation-for="Descricao"></span>
+
     </div>
 
     <div class="formulario-campo">
-        <label>Equipamento</label>
-        <select name="EquipamentoId">
-            @foreach (ListarEquipamentosViewModel e in equipamentos)
-            {
-                <option value="@e.Id">@e.Nome</option>
-            }
+        <label asp-for="EquipamentoId">Equipamento</label>
+        <select asp-for="EquipamentoId" asp-items="equipamentos">
+            <option value="EquipamentoId">Selecione um equipamento</option>
+
         </select>
+        <span asp-validation-for="EquipamentoId"></span>
     </div>
 
     <div class="formulario-acoes">
-        <a href="/Chamado/Listar">Voltar</a>
+        <a asp-action="Listar">Voltar</a>
         <button type="submit">Confirmar</button>
     </div>
 

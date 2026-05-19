@@ -1,36 +1,37 @@
-@using GestaoDeEquipamentosWeb.ConsoleApp.Models
 @{
     Layout = "_Layout";
     ViewBag.Titulo = "Cadastro de Chamado";
 
-    List<ListarEquipamentosViewModel> equipamentos = ViewBag.Equipamentos;
+    List<SelectListItem> equipamentos = ViewBag.Equipamentos;
 }
 
+@model CadastrarChamadoViewModel
 
-<form class="formulario" action="/Chamado/Cadastrar" method="post">
+<form class="formulario" asp-action="Cadastrar" method="post">
 
     <div class="formulario-campo">
-        <label>Titulo</label>
-        <input type="text" name="Titulo" required>
+        <label asp-for="Titulo">Titulo</label>
+        <input asp-for="Titulo" type="text">
+        <span asp-validation-for="Titulo"></span>
     </div>
 
     <div class="formulario-campo">
-        <label>Descrição</label>
-        <input type="text" name="Descricao" required>
+        <label asp-for="Descricao">Descrição</label>
+        <textarea asp-for="Descricao"></textarea>
+        <span asp-validation-for="Descricao"></span>
+
     </div>
 
     <div class="formulario-campo">
-        <label>Equipamento</label>
-        <select name="EquipamentoId">
-            @foreach (ListarEquipamentosViewModel e in equipamentos)
-            {
-                <option value="@e.Id">@e.Nome</option>
-            }
+        <label asp-for="EquipamentoId">Equipamento</label>
+        <select asp-for="EquipamentoId" asp-items="equipamentos">
+            <option value="EquipamentoId">Selecione um equipamento</option>
         </select>
+        <span asp-validation-for="EquipamentoId"></span>
     </div>
 
     <div class="formulario-acoes">
-        <a href="/Chamado/Listar">Voltar</a>
+        <a asp-action="Listar">Voltar</a>
         <button type="submit">Confirmar</button>
     </div>
 </form>

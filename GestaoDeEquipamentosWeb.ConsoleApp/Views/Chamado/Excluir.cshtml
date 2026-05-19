@@ -1,38 +1,35 @@
-@using GestaoDeEquipamentosWeb.ConsoleApp.Models
 @{
     Layout = "_Layout";
     ViewBag.Titulo = "Exclusão de Chamado";
-
-
 }
 
 
 
 @model ExcluirChamadoViewModel;
 
-<form class="formulario" action="/Chamado/Excluir/@Model.Id" method="post">
+<form class="formulario" asp-action="Excluir" asp-route-id="@Model.Id" method="post">
 
     <p class="formulario-alerta">Deseja mesmo excluir este chamado?</p>
 
     <div class="formulario-campo">
-        <label>Titulo</label>
+        <label asp-for="Titulo">Titulo</label>
         <br>
-        <input type="text" name="Titulo" value="@Model.Titulo" disabled>
+        <input asp-for="Titulo" type="text" value="@Model.Titulo" disabled>
     </div>
 
     <div class="formulario-campo">
-        <label>Descrição</label>
+        <label asp-for="Descricao">Descrição</label>
         <br>
-        <input type="text" name="Descricao" value="@Model.Descricao" disabled>
+        <input asp-for="Descricao" type="text" value="@Model.Descricao" disabled>
     </div>
 
     <div class="formulario-campo">
-        <label>Equipamento</label>
-        <input type="text" name="Equipamento" value="@Model.Equipamento" disabled>
+        <label asp-for="Equipamento">Equipamento</label>
+        <input asp-for="Equipamento" type="text" value="@Model.Equipamento" disabled>
     </div>
 
     <div class="formulario-acoes">
-        <a href="/Chamado/Listar">Voltar</a>
+        <a asp-action="Listar">Voltar</a>
         <button type="submit">Confirmar</button>
     </div>
 

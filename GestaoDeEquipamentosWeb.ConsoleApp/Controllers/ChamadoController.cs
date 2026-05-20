@@ -21,11 +21,30 @@ public class ChamadoController : Controller
         repositorioEquipamento = new RepositorioEquipamentoEmArquivo(contexto);
     }
 
-
-    public ActionResult Listar()
+    public ActionResult Listar(string status)
     {
+        List<Chamado> chamados;
 
-        List<Chamado> chamados = repositorioChamado.SelecionarTodos();
+        if (string.IsNullOrEmpty(status))
+        {
+            chamados = repositorioChamado.SelecionarTodos();
+            ViewBag.Status = "todos";
+        }
+        else if (status.ToLower() == "em-aberto")
+        {
+            chamados = repositorioChamado.Filtrar(c => !c.EstaConcluido);
+            ViewBag.Status = "em-aberto";
+        }
+        else if (status.ToLower() == "concluidos")
+        {
+            chamados = repositorioChamado.Filtrar(c => c.EstaConcluido);
+            ViewBag.Status = "concluidos";
+        }
+        else
+        {
+            chamados = repositorioChamado.SelecionarTodos();
+            ViewBag.Status = "Todos";
+        }
 
         List<ListarChamadosViewModel> listarvms = new List<ListarChamadosViewModel>();
 
@@ -42,7 +61,6 @@ public class ChamadoController : Controller
 
             listarvms.Add(viewModel);
         }
-
 
         return View(listarvms);
     }
@@ -117,7 +135,7 @@ public class ChamadoController : Controller
             return View(editarVm);
         }
 
-        Chamado chamadoAtualizado = new Chamado(editarVm.Titulo, equipamento, editarVm.Descricao);
+        Chamado chamadoAtualizado = new Chamado(editarVm.Titulo, equipamento, editarVm.EstaConcluido, editarVm.Descricao);
         repositorioChamado.Editar(editarVm.Id, chamadoAtualizado);
 
         return RedirectToAction(nameof(Listar));

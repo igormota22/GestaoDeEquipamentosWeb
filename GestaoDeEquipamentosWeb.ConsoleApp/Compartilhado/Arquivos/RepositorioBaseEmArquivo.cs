@@ -69,4 +69,9 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
     {
         return registros;
     }
+
+    public List<T> Filtrar(Predicate<T> filtro)
+    {
+        return registros.FindAll(filtro);
+    }
 }

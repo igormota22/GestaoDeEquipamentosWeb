@@ -2,6 +2,8 @@
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de chamado";
 
+    string statusAtual = ViewBag.Status;
+
 }
 
 @model List<ListarChamadosViewModel>;
@@ -10,38 +12,42 @@
 <a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar novo</a>
 
 <div class="filtros-listagem">
+    <a asp-action="listar" class="@(statusAtual == "todos" ? "ativo" : "")">Todos</a>
+    <a asp-action="listar" asp-route-status="em-aberto" class="@(statusAtual == "em-aberto" ? "ativo" : "")">Em
+        Aberto</a>
+        <a asp-action="listar" asp-route-status="concluidos"
+           class="@(statusAtual == "concluidos" ? "ativo" : "")">Concluidos</a>
+    </div>
 
-</div>
-
-<table class="registros">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Titulo</th>
-            <th>Data De Abertura</th>
-            <th>Status</th>
-            <th>Tempo</th>
-            <th>Equipamento</th>
-            <th>Ação 1</th>
-            <th>Ação 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (ListarChamadosViewModel c in Model)
-        {
+    <table class="registros">
+        <thead>
             <tr>
-                <td>@c.Id</td>
-                <td>@c.Titulo</td>
-                <td>@c.DataAbertura.ToString(format: "dd/MM/yyyy")</td>
-                <td>@(c.EstaConcluido ? "Concluido" : "Aberto")</td>
-                <td>@c.TempoDecorrido dias(s) </td>
-                <td>@c.Equipamento</td>
-                <td><a asp-action="Editar" asp-route-id="@c.Id">Editar</a></td>
-                <td><a asp-action="Excluir" asp-route-id="@c.Id">Excluir</a></td>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Data De Abertura</th>
+                <th>Status</th>
+                <th>Tempo</th>
+                <th>Equipamento</th>
+                <th>Ação 1</th>
+                <th>Ação 2</th>
             </tr>
-        }
-    </tbody>
-</table>
-<br>
+        </thead>
+        <tbody>
+            @foreach (ListarChamadosViewModel c in Model)
+            {
+                <tr>
+                    <td>@c.Id</td>
+                    <td>@c.Titulo</td>
+                    <td>@c.DataAbertura.ToString(format: "dd/MM/yyyy")</td>
+                    <td>@(c.EstaConcluido ? "Concluido" : "Aberto")</td>
+                    <td>@c.TempoDecorrido dias(s) </td>
+                    <td>@c.Equipamento</td>
+                    <td><a asp-action="Editar" asp-route-id="@c.Id">Editar</a></td>
+                    <td><a asp-action="Excluir" asp-route-id="@c.Id">Excluir</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br>
 
 

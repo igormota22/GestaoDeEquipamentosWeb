@@ -12,7 +12,7 @@
 
 
 
-<a class="btn-cadastrar" href="/Equipamento/Cadastrar">Cadastrar novo</a>
+<a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar novo</a>
 
 <table class="registros">
     <thead>
@@ -35,9 +35,9 @@
                 <td>@e.PrecoAquisicao.ToString(format: "C2")</td>
                 <td>@e.DataFabricacao.ToShortDateString()</td>
                 <td>@e.Fabricante</td>
-                <td><a href="/Equipamento/Editar/@e.Id">Editar</a>
+                <td><a asp-action="Editar" asp-route-id="@e.Id">Editar</a>
                 </td>
-                <td><a href="/Equipamento/Excluir/@e.Id">Excluir</a>
+                <td><a asp-action="Excluir" asp-route-id="@e.Id">Excluir</a>
                 </td>
             </tr>
         }

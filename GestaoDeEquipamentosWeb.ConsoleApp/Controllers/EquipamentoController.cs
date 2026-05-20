@@ -4,6 +4,7 @@ using GestaoDeEquipamentosWeb.ConsoleApp.Models;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloEquipamento;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
 {
@@ -50,7 +51,8 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
         public ActionResult Cadastrar()
         {
             ViewBag.Fabricantes = CarregarFabricantes();
-            return View();
+            CadastrarEquipamentoViewModel cadastrarVm = new CadastrarEquipamentoViewModel(string.Empty, 0, DateTime.Now, string.Empty);
+            return View(cadastrarVm);
         }
 
         [HttpPost]
@@ -59,8 +61,16 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             Fabricante? fabricante = repositorioFabricante.SelecionarPorId(cadastrarVm.FabricanteId);
 
             if (fabricante == null)
-                return RedirectToAction(nameof(Listar));
+                ModelState.AddModelError(
+                    nameof(cadastrarVm.FabricanteId),
+                    "Selecione um id valido"
+                );
 
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Equipamentos = CarregarFabricantes();
+                return View(cadastrarVm);
+            }
             Equipamento novoEquipamento = new Equipamento(cadastrarVm.Nome, cadastrarVm.PrecoAquisicao, cadastrarVm.DataFabricacao, fabricante);
 
             repositorioEquipamento.Cadastrar(novoEquipamento);
@@ -96,7 +106,16 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             Fabricante? fabricante = repositorioFabricante.SelecionarPorId(editarVm.FabricanteId);
 
             if (fabricante == null)
-                return RedirectToAction(nameof(Listar));
+                ModelState.AddModelError(
+                    nameof(editarVm.FabricanteId),
+                    "Selecione um id valido"
+                );
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Equipamentos = CarregarFabricantes();
+                return View(editarVm);
+            }
 
             Equipamento equipamentoAtualizado = new Equipamento(
                 editarVm.Nome,
@@ -140,24 +159,20 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
 
         }
 
-        private List<ListarFabricantesViewModel> CarregarFabricantes()
+        private List<SelectListItem> CarregarFabricantes()
         {
-
             List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
 
-            List<ListarFabricantesViewModel> listarvms = new List<ListarFabricantesViewModel>();
+            List<SelectListItem> listarvms = new List<SelectListItem>();
 
             foreach (Fabricante f in fabricantes)
             {
-                ListarFabricantesViewModel viewModel = new ListarFabricantesViewModel(
-                    f.Id,
+                SelectListItem viewModel = new SelectListItem(
                     f.Nome,
-                    f.Email,
-                    f.Telefone
+                    f.Id
                 );
 
                 listarvms.Add(viewModel);
-
             }
 
             return listarvms;

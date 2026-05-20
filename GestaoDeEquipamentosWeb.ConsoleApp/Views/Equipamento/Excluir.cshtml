@@ -7,38 +7,34 @@
 }
 
 
-
 @model ExcluirEquipamentoViewModel;
 
-<form class="formulario" action="/Equipamento/Excluir/@Model.Id" method="post">
+<form class="formulario" asp-action="Excluir" asp-route-id="@Model.Id" method="post">
 
     <p class="formulario-alerta">Deseja mesmo excluir este equipamento?</p>
 
     <div class="formulario-campo">
-        <label>Nome</label>
-        <br>
-        <input type="text" name="Nome" value="@Model.Nome" disabled>
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" type="text" value="@Model.Nome" disabled>
     </div>
 
     <div class="formulario-campo">
-        <label>Preço de Aquisição</label>
-        <br>
-        <input type="text" name="PrecoAquisicao" value="@Model.PrecoAquisicao" disabled>
+        <label asp-for="PrecoAquisicao">Preço de Aquisição</label>
+        <input asp-for="PrecoAquisicao" type="text" value="@Model.PrecoAquisicao" disabled>
     </div>
 
     <div class="formulario-campo">
-        <label>Data De Fabricação</label>
-        <br>
-        <input type="text" name="DataFabricacao" value="@Model.DataFabricacao.ToShortDateString()" disabled>
+        <label asp-for="DataFabricacao">Data De Fabricação</label>
+        <input asp-for="DataFabricacao" type="text" value="@Model.DataFabricacao.ToShortDateString()" disabled>
     </div>
 
     <div class="formulario-campo">
-        <label>Fabricante</label>
-        <input type="text" name="Fabricante" value="@Model.Fabricante" disabled>
+        <label asp-for="Fabricante">Fabricante</label>
+        <input asp-for="Fabricante" type="text" value="@Model.Fabricante" disabled>
     </div>
 
     <div class="formulario-acoes">
-        <a href="/Equipamento/Listar">Voltar</a>
+        <a asp-action="Listar">Voltar</a>
         <button type="submit">Confirmar</button>
     </div>
 

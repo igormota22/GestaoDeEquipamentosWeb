@@ -60,6 +60,27 @@ nav {
     margin: 10px 0px;
 }
 
+.filtros-listagem {
+    display: flex;
+    gap: 10px;
+    margin: 18px, 8px;
+}
+
+.filtros-listagem a {
+    border: 1px solid rgba(152, 62, 209, 0.45);
+    border-radius: 100vmax;
+    color: rgb(129, 46, 181);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 22px;
+    text-decoration: none;
+}
+
+.filtros-listagem a.ativo {
+    background-color: #a8447a;
+    color: #fff;
+}
+
 .registros {
     width: 100%;
     min-width: 720px;

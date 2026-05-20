@@ -24,6 +24,7 @@ public class ChamadoController : Controller
 
     public ActionResult Listar()
     {
+
         List<Chamado> chamados = repositorioChamado.SelecionarTodos();
 
         List<ListarChamadosViewModel> listarvms = new List<ListarChamadosViewModel>();
@@ -90,7 +91,8 @@ public class ChamadoController : Controller
          id,
          chamado.Titulo,
          chamado.Descricao,
-         chamado.Equipamento.Id
+         chamado.Equipamento.Id,
+         chamado.EstaConcluido
         );
 
         ViewBag.Equipamentos = CarregarEquipamentos();

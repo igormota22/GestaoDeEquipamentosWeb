@@ -3,39 +3,41 @@
     Layout = "_Layout";
     ViewBag.Titulo = "Cadastro de Equipamento";
 
-    List<ListarFabricantesViewModel> fabricantes = ViewBag.Fabricantes;
+    List<SelectListItem> fabricantes = ViewBag.Fabricantes;
 }
 
+@model CadastrarEquipamentoViewModel
 
-<form class="formulario" action="/Equipamento/Cadastrar" method="post">
+
+<form class="formulario" asp-action="Cadastrar" method="post">
 
     <div class="formulario-campo">
-        <label>Nome</label>
-        <input type="text" name="Nome" required>
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" type="text">
+        <span asp-validation-for="Nome"></span>
     </div>
 
     <div class="formulario-campo">
-        <label>Preço de Aquisição</label>
-        <input type="number" name="PrecoAquisicao" min="0.01" step="0.01" required>
+        <label asp-for="PrecoAquisicao">Preço de Aquisição</label>
+        <input asp-for="PrecoAquisicao" type="number" min="0.01" step="0.01">
+        <span asp-validation-for="PrecoAquisicao"></span>
     </div>
 
     <div class="formulario-campo">
-        <label>Data de Fabricação</label>
-        <input type="date" name="DataFabricacao" required>
+        <label asp-for="DataFabricacao">Data de Fabricação</label>
+        <input asp-for="DataFabricacao" type="date" required>
     </div>
 
     <div class="formulario-campo">
-        <label>Fabricante</label>
-        <select name="FabricanteId">
-            @foreach (ListarFabricantesViewModel f in fabricantes)
-            {
-                <option value="@f.Id">@f.Nome</option>
-            }
+        <label asp-for="FabricanteId">Fabricante</label>
+        <select asp-for="FabricanteId" asp-items="fabricantes">
+            <option value="FabricanteId">Selecione um Fabricante</option>
         </select>
+        <span asp-validation-for="FabricanteId"></span>
     </div>
 
     <div class="formulario-acoes">
-        <a href="/Equipamento/Listar">Voltar</a>
+        <a asp-action="Listar">Voltar</a>
         <button type="submit">Confirmar</button>
     </div>
 </form>

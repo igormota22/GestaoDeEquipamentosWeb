@@ -13,28 +13,28 @@
     rel="stylesheet">
 
     <link rel="stylesheet" href="~/CSS/styles.CSS">
-    </head>
+</head>
 
-    <body>
-        <nav>
-            <h3>Gestão de Equipamentos</h3>
+<body>
+    <nav>
+        <h3>Gestão de Equipamentos</h3>
 
-            <div class="Links-navbar">
-                <a href="/Fabricante/listar">Controle de Fabricantes</a>
-                <a href="/Equipamento/listar">Controle de Equipamentos</a>
-                <a href="/Chamado/listar">Controle de Chamados</a>
-                <a href="/Home/Index">Inicio</a>
-            </div>
-        </nav>
+        <div class="Links-navbar">
+            <a asp-controller="Fabricante" asp-action="listar">Controle de Fabricantes</a>
+            <a asp-controller="Equipamento" asp-action="listar">Controle de Equipamentos</a>
+            <a asp-controller="Chamado" asp-action="listar">Controle de Chamados</a>
+            <a href="/Home/Index">Inicio</a>
+        </div>
+    </nav>
 
-        <header>
-            <h2 class="titulo-pagina">@ViewBag.Titulo</h2>
-        </header>
+    <header>
+        <h2 class="titulo-pagina">@ViewBag.Titulo</h2>
+    </header>
 
-        <main>
-            @RenderBody()
-        </main>
-  
-    </body>
+    <main>
+        @RenderBody()
+    </main>
+
+</body>
 
 </html>
